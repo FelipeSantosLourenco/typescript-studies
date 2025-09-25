@@ -1,5 +1,6 @@
 import type { FastifyInstance, FastifyPluginOptions, FastifyRequest, FastifyReply } from "fastify";
 import { CreateProductController } from "./controllers/CreateProductController.js";
+import { ListProductsController } from "./controllers/ListProductsController.js";
 
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions) {
     
@@ -10,5 +11,9 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
 
     fastify.post("/product", async (request: FastifyRequest, reply: FastifyReply) => {
         return new CreateProductController().handle(request, reply)
+    })
+
+    fastify.get("/products", async (request: FastifyRequest, reply: FastifyReply) => {
+        return new ListProductsController().handle(request, reply)
     })
 }
